@@ -43,3 +43,18 @@ for node in G.nodes():
             new_configuration[new_pos] = configuration[i]
             if not G.has_edge(node, "".join(new_configuration)):
                 G.add_edge(node, "".join(new_configuration))
+
+# OK, the graph has been cooked! We can now analyze it.
+# Let's first print its number of nodes, number of edges,
+# and number of connected components.
+
+print("Number of nodes:", G.number_of_nodes())
+print("Number of edges:", G.number_of_edges())
+print("Number of connected components:", nx.number_connected_components(G))
+
+# Let’s now ensure that the configurations "W*B**W*B" and "B*B**W*W" are reachable
+# from "W*W**B*B", while "W*B**B*W" is not.
+
+assert "B*B**W*W" in nx.node_connected_component(G, "W*W**B*B") # means that they 
+# can switch beginning placment
+assert "W*B**B*W" not in nx.node_connected_component(G, "W*W**B*B")
