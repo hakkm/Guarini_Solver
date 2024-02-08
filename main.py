@@ -1,6 +1,8 @@
 import networkx as nx
 import itertools as it
 
+from networkx import draw
+
 G = nx.Graph()
 # We now start creating the graph of all configurations.
 # Below, we iterate through all possible strings of length 8
@@ -58,3 +60,6 @@ print("Number of connected components:", nx.number_connected_components(G))
 assert "B*B**W*W" in nx.node_connected_component(G, "W*W**B*B") # means that they 
 # can switch beginning placment
 assert "W*B**B*W" not in nx.node_connected_component(G, "W*W**B*B")
+
+# What is the shortest path from "W*W**B*B" to "W*B**W*B"? (to switch the beginning placement)
+print(" -> ".join(nx.shortest_path(G, "W*W**B*B", "W*B**W*B")))
