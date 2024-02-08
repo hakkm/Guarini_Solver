@@ -26,3 +26,20 @@ moves[4] = [0, 5]
 moves[5] = [1, 4]
 moves[6] = [0, 2]
 moves[7] = [1, 3]
+
+# Adding edges to the graph:
+for node in G.nodes():
+    configuration = [c for c in node]
+
+    # loop over all configuration's items 
+    for i in range(8):
+        if configuration[i] == '*':
+            continue
+        for new_pos in moves[i]:
+            if configuration[new_pos] != '*':
+                continue
+            new_configuration = configuration.copy()
+            new_configuration[i] = '*'
+            new_configuration[new_pos] = configuration[i]
+            if not G.has_edge(node, "".join(new_configuration)):
+                G.add_edge(node, "".join(new_configuration))
