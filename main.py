@@ -14,3 +14,15 @@ for wb_indices in it.permutations(range(8), 4):
     configuration[wb_indices[3]] = 'B'
 
     G.add_node("".join(configuration))
+
+# We then add edges to the graph. For this, we first fill in a list moves: 
+#   moves[i] are the numbers of cells where a knight can move from the i-th cell.
+moves = [[] for _ in range(8)]
+moves[0] = [4, 6]
+moves[1] = [5, 7]
+moves[2] = [3, 6]
+moves[3] = [2, 7]
+moves[4] = [0, 5]
+moves[5] = [1, 4]
+moves[6] = [0, 2]
+moves[7] = [1, 3]
